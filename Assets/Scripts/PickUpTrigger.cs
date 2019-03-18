@@ -7,6 +7,7 @@ public class PickUpTrigger : MonoBehaviour {
 	  public float speed;
 
     private Rigidbody2D rb;
+    public DataContainer dataContainer;
 
     void Start ()
     {
@@ -26,9 +27,12 @@ public class PickUpTrigger : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) 
     {
 	Debug.Log ("Collider"+other.name+" "+gameObject.name);
-        if (other.gameObject.CompareTag ("Diamond"))
+        if (other.gameObject.CompareTag ("BadDiamond"))
         {
-            other.gameObject.SetActive (false);
+	    Debug.Log("destroy badDiamond");
+            //other.gameObject.SetActive (false);
+		dataContainer.score+= other.gameObject.GetComponent<Diamonds>().badDiamond;
+	    Destroy(other.gameObject);
 
         }
     }
