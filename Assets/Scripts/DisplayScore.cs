@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DisplayScore : MonoBehaviour {
+public class DisplayScore : MonoBehaviour 
+{
     public DataContainer dataContainer;
     public Text textScore;
 
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
 		
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update () 
+	{
 	    textScore.text = dataContainer.score.ToString();	
 	}
 }

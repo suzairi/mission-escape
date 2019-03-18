@@ -11,6 +11,7 @@ public class TimerController : MonoBehaviour
 	private float timer;
 	private bool canCount = true;
 	private bool doOnce = false;
+	public LoadSceneOnClick sceneLoader;
 
 	void Start()
 	{
@@ -30,6 +31,11 @@ public class TimerController : MonoBehaviour
 			doOnce = true;
 			uiText.text = "0.00";
 			timer = 0.0f;
+		}
+		else if (timer <= 0)
+		{
+			Debug.Log("Timer = 0"+timer);
+			sceneLoader.LoadScene("GameOver");
 		}
 	}
 }

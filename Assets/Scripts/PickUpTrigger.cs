@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUpTrigger : MonoBehaviour {
+public class PickUpTrigger : MonoBehaviour 
+{
 
 	  public float speed;
 
@@ -29,9 +30,19 @@ public class PickUpTrigger : MonoBehaviour {
 	Debug.Log ("Collider"+other.name+" "+gameObject.name);
         if (other.gameObject.CompareTag ("BadDiamond"))
         {
-	    Debug.Log("destroy badDiamond");
+	   // Debug.Log("destroy badDiamond");
             //other.gameObject.SetActive (false);
 		dataContainer.score+= other.gameObject.GetComponent<Diamonds>().badDiamond;
+	    Destroy(other.gameObject);
+
+        }
+	
+	Debug.Log ("Collider"+other.name+" "+gameObject.name);
+        if (other.gameObject.CompareTag ("GoodDiamond"))
+        {
+	   // Debug.Log("destroy goodDiamond");
+            //other.gameObject.SetActive (false);
+		dataContainer.score+= other.gameObject.GetComponent<Diamonds>().goodDiamond;
 	    Destroy(other.gameObject);
 
         }

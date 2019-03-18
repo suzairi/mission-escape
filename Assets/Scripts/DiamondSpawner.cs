@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DiamondSpawner : MonoBehaviour {
+public class DiamondSpawner : MonoBehaviour 
+{
 
     public GameObject goodDiamond;
     public GameObject badDiamond;
@@ -19,10 +20,10 @@ public class DiamondSpawner : MonoBehaviour {
         {
             nextSpawnGood = Time.time + spawnRate;
 	    Debug.Log("nextSpawnGood" + nextSpawnGood);
-            randX = Random.Range(-8.5f, 8.5f);
+            randX = Random.Range(-6.5f, 6.5f);
 	    randY = Random.Range(-4.0f, 4.0f);
             whereToSpawn = new Vector2(randX, randY);
-	    Debug.Log("InstantiategoodDiamond");
+	    //Debug.Log("InstantiategoodDiamond");
             Instantiate(goodDiamond, whereToSpawn, Quaternion.identity);
         }
     }
@@ -46,11 +47,11 @@ public class DiamondSpawner : MonoBehaviour {
         if (Time.time > nextSpawnBad)
         {
 	    nextSpawnBad = Time.time + spawnRate;
-	    Debug.Log("nextSpawnBad" + nextSpawnBad);
+	    //Debug.Log("nextSpawnBad" + nextSpawnBad);
             randX = Random.Range(-8.5f, 8.5f);
 	    randY = Random.Range(-4.0f, 4.0f);
             whereToSpawn = new Vector2(randX, randY);
-	    Debug.Log("InstantiatebadDiamond");
+	    //Debug.Log("InstantiatebadDiamond");
 	    Instantiate(badDiamond, whereToSpawn, Quaternion.identity);
         }
     }
