@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickUpTrigger : MonoBehaviour 
 {
+    private const string HORIZONTAL = "Horizontal";
+    private const string VERTICAL = "Vertical";
+    private const string BADDIAMOND = "BadDiamond";
+    private const string GOODDIAMOND = "GoodDiamond";
 
-	  public float speed;
+    public float speed;
+    public DataContainer dataContainer;
 
     private Rigidbody2D rb;
-    public DataContainer dataContainer;
 
     void Start ()
     {
@@ -17,34 +19,26 @@ public class PickUpTrigger : MonoBehaviour
 
     void FixedUpdate ()
     {
-        float moveHorizontal = Input.GetAxis ("Horizontal");
-        float moveVertical = Input.GetAxis ("Vertical");
+        float moveHorizontal = Input.GetAxis (HORIZONTAL);
+        float moveVertical = Input.GetAxis (VERTICAL);
 
         Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
         rb.AddForce (movement * speed);
     }
 
-    void OnTriggerEnter2D(Collider2D other) 
+    void OnTriggerEnter2D (Collider2D other) 
     {
-	Debug.Log ("Collider"+other.name+" "+gameObject.name);
-        if (other.gameObject.CompareTag ("BadDiamond"))
+        if (other.gameObject.CompareTag (BADDIAMOND))
         {
-	   // Debug.Log("destroy badDiamond");
-            //other.gameObject.SetActive (false);
-		dataContainer.score+= other.gameObject.GetComponent<Diamonds>().badDiamond;
-	    Destroy(other.gameObject);
-
+		    dataContainer.score+= other.gameObject.GetComponent<Diamond>().badDiamond;
+	        Destroy (other.gameObject);
         }
 	
-	Debug.Log ("Collider"+other.name+" "+gameObject.name);
-        if (other.gameObject.CompareTag ("GoodDiamond"))
+        if (other.gameObject.CompareTag (GOODDIAMOND))
         {
-	   // Debug.Log("destroy goodDiamond");
-            //other.gameObject.SetActive (false);
-		dataContainer.score+= other.gameObject.GetComponent<Diamonds>().goodDiamond;
-	    Destroy(other.gameObject);
-
+		    dataContainer.score+= other.gameObject.GetComponent<Diamond>().goodDiamond;
+	        Destroy (other.gameObject);
         }
     }
 }
