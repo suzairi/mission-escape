@@ -1,34 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class IcebergController : MonoBehaviour {
+public class IcebergController : MonoBehaviour
+{
+    private float initialIcebergPosX = .0f;
+    private float initialIcebergPosY = -7.5f;
+    private float initialIcebergBigPosY = -9.8f;
+
+    private float icebergPosX, icebergPosY;
+    private float boundaryIcebergLeft = -10.0f, boundaryIcebergRight = 8.0f;
+    private float time = .0f;
 
     public GameObject iceberg;
+    public GameObject icebergBig;
+    public float delay = 3.0f;
 
-    float initialIcebergPosX = 0.0f;
-    float initialIcebergPosY = -7.5f;
-    float icebergPosX, icebergPosY;
-    float boundaryIcebergLeft = -10.0f, boundaryIcebergRight = 8.0f;
-
-	// Use this for initialization
-	void Start () {
-        InitializeIceberg();
+    void Start ()
+    {
+        InitializeIceberg ();
 	}
 
-    void InitializeIceberg()
+    void InitializeIceberg ()
     {
-        float x = Random.Range(boundaryIcebergLeft,boundaryIcebergRight);
-        Instantiate(iceberg, new Vector2(x, initialIcebergPosY), Quaternion.identity);
-    }
+        float x = Random.Range (boundaryIcebergLeft,boundaryIcebergRight);
 
-    void MoveIceberg()
-    {
-        
+        float random = Random.RandomRange(0.0f, 1.0f);
+        float treshold = 0.5f;
+
+        if (random > treshold)
+        {
+            Instantiate(iceberg, new Vector2(x, initialIcebergPosY), Quaternion.identity);
+            return;
+        }
+
+        Instantiate(icebergBig, new Vector2(x, initialIcebergBigPosY), Quaternion.identity);
+
     }
 	
-	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        time += Time.deltaTime;
+        
+        if (time > delay)
+        {
+            InitializeIceberg ();
+            time = .0f;
+        }
 	}
 }
