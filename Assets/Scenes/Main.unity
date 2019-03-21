@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiText: {fileID: 280473857}
-  mainTimer: 5
+  mainTimer: 30
   sceneLoader: {fileID: 191723526}
 --- !u!4 &340898413
 Transform:
